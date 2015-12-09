@@ -1,16 +1,20 @@
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=/Users/minhdanh/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="random"
+ZSH_THEME="jnrowe"
 
 DEFAULT_USER="minhdanh"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -47,14 +51,14 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rails)
-
-source $ZSH/oh-my-zsh.sh
+plugins=(git)
 
 # User configuration
 
-# export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/coreutils/libexec/gnubin:/Users/minhdanh/.go/bin:/Users/minhdanh/.rvm/bin:/Users/minhdanh/.go/bin:/Users/minhdanh/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
+
+source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -80,22 +84,34 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+# pretty Git log
+alias gl='git log --graph --pretty="%C(bold green)%h%Creset%C(auto)%d%Creset %s"'
+
+# pretty Git log, all references
+alias gll='gl --all'
+
+# pretty Git log, show authors
+alias gla='git log --graph --pretty="%C(bold green)%h%Creset %C(yellow)%an%Creset%C(auto)%d%Creset %s"'
+
+# pretty Git log, all references, show authors
+alias glla='gla --all'
+
 alias ls="ls --color=auto"
-alias ll="ls -l --color=auto"
+alias ll="ls -lh --color=auto"
 alias h="history"
-# Disable Ctrl + S in Terminal to map this combination in Vim
-alias vim="stty stop '' -ixoff ; /usr/local/Cellar/macvim/7.4-74/MacVim.app/Contents/MacOS/Vim"
-# 'Frozing' tty, so after any command terminal settings will be restored
-ttyctl -f
+alias r="ranger"
+alias vim="/usr/local/Cellar/macvim/7.4-84/MacVim.app/Contents/MacOS/Vim"
 
 source "`brew --prefix`/etc/grc.bashrc"
 alias curl='colourify curl'
 . `brew --prefix`/etc/profile.d/z.sh
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 eval $(dircolors -b $HOME/.dircolors/dircolors.ansi-universal)
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
 export PATH=$PATH:/opt/local/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8

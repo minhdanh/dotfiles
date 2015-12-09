@@ -1,6 +1,49 @@
 set nocompatible
 filetype off
 
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+
+" Plugin 'fidian/hexmode'
+" Plugin 'fatih/vim-go'
+" Plugin 'tmux-plugins/vim-tmux'
+" Plugin 'tmux-plugins/vim-tmux-focus-events'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-commentary'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-surround'
+Plugin 'kien/ctrlp.vim'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-rails'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimfiler.vim'
+" Plugin 'elzr/vim-json'
+" Plugin 'rstacruz/sparkup'
+Plugin 'Yggdroot/indentLine'
+" Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'Raimondi/delimitMate'
+" Plugin 'szw/vim-ctrlspace'
+" Plugin 'mbbill/undotree'
+Plugin 'Valloric/YouCompleteMe'
+" Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-dispatch'
+Plugin 'rking/ag.vim'
+Plugin 'wincent/terminus'
+" Plugin 'jscappini/material.vim'
+" Plugin 'jdkanani/vim-material-theme'
+Plugin 'godlygeek/tabular'
+Plugin 'slim-template/vim-slim'
+Plugin 'vim-ruby/vim-ruby'
+" Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
 " Theme
 "----------------------------------------------------------------
 set t_Co=256
@@ -8,6 +51,7 @@ set background=dark
 set term=xterm-256color
 colorscheme solarized
 
+set relativenumber
 set number                                                      " display line number
 set numberwidth=5
 set incsearch                                                   " do incremental searching
@@ -31,7 +75,7 @@ set cursorline                                                  " highlight curr
 set mouse=a
 " Language specific settings
 "----------------------------------------------------------------
-" autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
+" autocmd FileType python setlocal expandtab shiftwidth=2 softtabstop=2
 "----------------------------------------------------------------
 
 " Also switch on highlighting the last used search pattern.
@@ -40,27 +84,46 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
+" hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
 " custom mappings
 "----------------------------------------------------------------
 imap ;; <Esc>
 let mapleader=" "
+
+" Run command with <leader>r
 nnoremap <leader>r :Dispatch<space>
+
+" Copy selection to clipboard in visual mode
+vnoremap <leader>c "*y
+
+" Move to end of line in insert mode
 inoremap ,, <C-o>$
-nnoremap ff :grep <C-R><C-W> *<CR>
+
+" find current world quickly using Ag
+nnoremap ff :Ag <C-R><C-W><CR>
+
 " Move to the next buffer
 nmap <leader>l :bnext<CR>
 " Move to the previous buffer
-nmap <leader>h :bprevious<CR>
+nmap <leader>hh :bprevious<CR>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap <leader>q :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader>a :ls<CR>
 " Toggle highlight search
-nmap <leader>e set hlsearch!<cr>
+nmap <leader>p set hlsearch!<cr>
 " Add a new line without entering insert mode
 nmap <leader>n o<Esc>
 nmap <leader>N O<Esc>
+" Close syntastic location list
+nmap <leader>m :lclose<cr>
+
+" Toggle tagbar
+nmap <leader>t :TagbarToggle<CR>
+
+" Run GoDoc
+nmap <leader>g :GoDoc<CR>
 
 " Ctrl + S to save file
 " If the current buffer has never been saved, it will have no name,
@@ -74,6 +137,7 @@ command -nargs=0 -bar Update if &modified
 \|endif
 nnoremap <silent> <C-S> :<C-u>Update<CR>
 inoremap <c-s> <c-o>:Update<CR>
+nmap <leader>s :Update<CR>
 
 " map j to gj and k to gk, so line navigation ignores line wrap
 nnoremap k gk
@@ -82,27 +146,30 @@ nnoremap 0 g0
 nnoremap $ g$
 nnoremap ^ g^
 
-" for easier split navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
 " split windows easier
 nnoremap <leader>w <C-W>v<C-W>l
 
-" toggle between paste and nopaste mode
-" nnoremap <leader>\ :set invpaste paste?<CR>
-map <leader>\ :set invpaste<CR>
-set pastetoggle=<leader>\
-set showmode
+nnoremap <A-j> :m .+1<CR>==                                     " Move current line down
+nnoremap <A-k> :m .-2<CR>==                                     " Move current line up
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" retain selection after moving block
+vnoremap > >gv
+vnoremap < <gv
 "----------------------------------------------------------------
 
 " vimfiler
 "----------------------------------------------------------------
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_ignore_pattern = '^\%(\.git\|\.DS_Store\|\.swp\)$'
-noremap <Leader>k :VimFiler<CR>
+" Enable file operation commands.
+call vimfiler#custom#profile('default', 'context', {
+      \ 'safe' : 0,
+      \ })
+noremap <Leader>k :VimFilerExplorer<CR>
 " autocmd VimEnter * VimFilerExplorer                           " Display vimfiler sidebar after starting Vim
 "----------------------------------------------------------------
 
@@ -124,13 +191,16 @@ let g:airline#extensions#tabline#fnamemod = ':t'                " Show just the 
 " syntastic config
 "----------------------------------------------------------------
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = {
+    \ "mode": "active",
+    \ "passive_filetypes": ["go"] }
 "----------------------------------------------------------------
 
 " CtrlP config
@@ -139,24 +209,17 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip                        " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = 'vendor/bundle'
 let g:ctrlp_prompt_mappings = {
   \ 'PrtClearCache()':      ['<c-,>'],
   \ }
 let g:ctrlp_use_caching = 0
 "----------------------------------------------------------------
 
-" indent-guides config
-"----------------------------------------------------------------
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_enable_on_vim_startup = 0
-hi IndentGuidesEven ctermbg=black
-hi IndentGuidesOdd ctermbg=fg
-"----------------------------------------------------------------
-
 " gitgutter config
 "----------------------------------------------------------------
 let g:gitgutter_escape_grep = 1
-let g:gitgutter_highlight_lines = 1
+let g:gitgutter_highlight_lines = 0
 "----------------------------------------------------------------
 
 " CtrlSpace config
@@ -176,34 +239,17 @@ hi CtrlSpaceSearch   guifg=#cb4b16 guibg=NONE gui=bold ctermfg=9 ctermbg=NONE te
 hi CtrlSpaceStatus   guifg=#839496 guibg=#002b36 gui=reverse term=reverse cterm=reverse ctermfg=12 ctermbg=8
 "----------------------------------------------------------------
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Plugin 'fidian/hexmode'
-Plugin 'fatih/vim-go'
-Plugin 'tmux-plugins/vim-tmux'
-Plugin 'tmux-plugins/vim-tmux-focus-events'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-surround'
-Plugin 'kien/ctrlp.vim'
-Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-rails'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/vimfiler.vim'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'elzr/vim-json'
-Plugin 'shawncplus/phpcomplete.vim'
-Plugin 'rstacruz/sparkup'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'reedes/vim-thematic'
-Plugin 'Raimondi/delimitMate'
-Plugin 'szw/vim-ctrlspace'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'mbbill/undotree'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-dispatch'
+" ag.vim
+"----------------------------------------------------------------
+let g:agprg="/usr/local/bin/ag --column"
+
+"----------------------------------------------------------------
+
+" vim-go
+"----------------------------------------------------------------
+" let g:go_fmt_autosave = 0
+" let g:go_highlight_functions = 1
+" let g:go_highlight_methods = 1
+" let g:go_highlight_structs = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_build_constraints = 1
