@@ -170,6 +170,7 @@ call vimfiler#custom#profile('default', 'context', {
       \ 'safe' : 0,
       \ })
 noremap <Leader>k :VimFilerExplorer<CR>
+noremap <Leader>f :VimFilerExplorer -find<CR>
 " autocmd VimEnter * VimFilerExplorer                           " Display vimfiler sidebar after starting Vim
 "----------------------------------------------------------------
 
