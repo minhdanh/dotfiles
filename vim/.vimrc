@@ -99,7 +99,7 @@ vnoremap <leader>c "*y
 " Move to end of line in insert mode
 inoremap ,, <C-o>$
 
-" find current world quickly using Ag
+" find current word quickly using Ag
 nnoremap ff :Ag <C-R><C-W><CR>
 
 " Move to the next buffer
