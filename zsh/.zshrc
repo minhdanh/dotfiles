@@ -29,7 +29,7 @@ DEFAULT_USER="minhdanh"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -52,10 +52,11 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
+#plugins=(git bgnotify)
 
 # User configuration
 
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/coreutils/libexec/gnubin:/Users/minhdanh/.go/bin:/Users/minhdanh/.rvm/bin:/Users/minhdanh/.go/bin:/Users/minhdanh/.rvm/bin"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -100,18 +101,13 @@ alias glla='gla --all'
 alias ls="ls --color=auto"
 alias ll="ls -lh --color=auto"
 alias h="history"
-alias r="ranger"
-alias vim="/usr/local/Cellar/macvim/7.4-84/MacVim.app/Contents/MacOS/Vim"
 
-source "`brew --prefix`/etc/grc.bashrc"
-alias curl='colourify curl'
+# . /usr/local/etc/grc.bashrc
+# alias curl='colourify curl'
 . `brew --prefix`/etc/profile.d/z.sh
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 eval $(dircolors -b $HOME/.dircolors/dircolors.ansi-universal)
-export PATH=$PATH:/opt/local/bin
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
-export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -3,43 +3,41 @@ filetype off
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/usr/local/opt/fzf
 
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
-" Plugin 'fidian/hexmode'
-" Plugin 'fatih/vim-go'
 " Plugin 'tmux-plugins/vim-tmux'
 " Plugin 'tmux-plugins/vim-tmux-focus-events'
+" Plugin 'christoomey/vim-tmux-navigator'
+" Plugin 'mbbill/undotree'
+" Plugin 'elzr/vim-json'
+" Plugin 'majutsushi/tagbar'
+" Plugin 'vim-ruby/vim-ruby'
+
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-commentary'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/syntastic'
+
+" Plugin 'scrooloose/syntastic'
+
 Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-rails'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimfiler.vim'
-" Plugin 'elzr/vim-json'
-" Plugin 'rstacruz/sparkup'
+
 Plugin 'Yggdroot/indentLine'
-" Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'Raimondi/delimitMate'
-" Plugin 'szw/vim-ctrlspace'
-" Plugin 'mbbill/undotree'
 Plugin 'Valloric/YouCompleteMe'
-" Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-dispatch'
-Plugin 'rking/ag.vim'
-Plugin 'wincent/terminus'
-" Plugin 'jscappini/material.vim'
-" Plugin 'jdkanani/vim-material-theme'
+" Plugin 'tpope/vim-dispatch'
+Plugin 'mileszs/ack.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'slim-template/vim-slim'
-Plugin 'vim-ruby/vim-ruby'
-" Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+" Plugin 'chase/vim-ansible-yaml'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -51,8 +49,10 @@ set background=dark
 set term=xterm-256color
 colorscheme solarized
 
+
 set relativenumber
 set number                                                      " display line number
+set colorcolumn=80
 set numberwidth=5
 set incsearch                                                   " do incremental searching
 set hidden
@@ -73,6 +73,9 @@ set list listchars=tab:»·,trail:·,nbsp:·                        " display ex
 set cursorline                                                  " highlight current line
 
 set mouse=a
+set completeopt-=preview
+
+set conceallevel=0                                              " display quote in json files
 " Language specific settings
 "----------------------------------------------------------------
 " autocmd FileType python setlocal expandtab shiftwidth=2 softtabstop=2
@@ -99,8 +102,8 @@ vnoremap <leader>c "*y
 " Move to end of line in insert mode
 inoremap ,, <C-o>$
 
-" find current word quickly using Ag
-nnoremap ff :Ag <C-R><C-W><CR>
+" find current world quickly using Ack
+nnoremap ff :Ack <C-R><C-W><CR>
 
 " Move to the next buffer
 nmap <leader>l :bnext<CR>
@@ -112,7 +115,7 @@ nmap <leader>q :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader>a :ls<CR>
 " Toggle highlight search
-nmap <leader>p set hlsearch!<cr>
+nmap <leader>m set hlsearch!<cr>
 " Add a new line without entering insert mode
 nmap <leader>n o<Esc>
 nmap <leader>N O<Esc>
@@ -138,6 +141,11 @@ command -nargs=0 -bar Update if &modified
 nnoremap <silent> <C-S> :<C-u>Update<CR>
 inoremap <c-s> <c-o>:Update<CR>
 nmap <leader>s :Update<CR>
+
+" Keep the windows position when switching between buffers
+au BufLeave * let b:winview = winsaveview()
+au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+"----------------------------------------------------------------
 
 " map j to gj and k to gk, so line navigation ignores line wrap
 nnoremap k gk
@@ -170,8 +178,8 @@ call vimfiler#custom#profile('default', 'context', {
       \ 'safe' : 0,
       \ })
 noremap <Leader>k :VimFilerExplorer<CR>
-noremap <Leader>f :VimFilerExplorer -find<CR>
 " autocmd VimEnter * VimFilerExplorer                           " Display vimfiler sidebar after starting Vim
+nnoremap vf :VimFilerExplorer -find
 "----------------------------------------------------------------
 
 " custom commands
@@ -191,17 +199,17 @@ let g:airline#extensions#tabline#fnamemod = ':t'                " Show just the 
 
 " syntastic config
 "----------------------------------------------------------------
-set statusline+=%#warningmsg#
+" set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = {
-    \ "mode": "active",
-    \ "passive_filetypes": ["go"] }
+" let g:syntastic_always_populate_loc_list = 0
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_mode_map = {
+"     \ "mode": "active",
+"     \ "passive_filetypes": ["go"] }
 "----------------------------------------------------------------
 
 " CtrlP config
@@ -240,12 +248,6 @@ hi CtrlSpaceSearch   guifg=#cb4b16 guibg=NONE gui=bold ctermfg=9 ctermbg=NONE te
 hi CtrlSpaceStatus   guifg=#839496 guibg=#002b36 gui=reverse term=reverse cterm=reverse ctermfg=12 ctermbg=8
 "----------------------------------------------------------------
 
-" ag.vim
-"----------------------------------------------------------------
-let g:agprg="/usr/local/bin/ag --column"
-
-"----------------------------------------------------------------
-
 " vim-go
 "----------------------------------------------------------------
 " let g:go_fmt_autosave = 0
@@ -254,3 +256,15 @@ let g:agprg="/usr/local/bin/ag --column"
 " let g:go_highlight_structs = 1
 " let g:go_highlight_operators = 1
 " let g:go_highlight_build_constraints = 1
+"----------------------------------------------------------------
+
+" ack config
+"----------------------------------------------------------------
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+"----------------------------------------------------------------
+
+" indentLine
+"----------------------------------------------------------------
+let g:indentLine_conceallevel = 0
