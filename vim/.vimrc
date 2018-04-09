@@ -177,7 +177,7 @@ let g:vimfiler_ignore_pattern = '^\%(\.git\|\.DS_Store\|\.swp\)$'
 call vimfiler#custom#profile('default', 'context', {
       \ 'safe' : 0,
       \ })
-noremap <Leader>k :VimFilerExplorer<CR>
+noremap <leader>k :VimFilerExplorer<CR>
 " autocmd VimEnter * VimFilerExplorer                           " Display vimfiler sidebar after starting Vim
 nnoremap vf :VimFilerExplorer -find
 "----------------------------------------------------------------
@@ -216,9 +216,10 @@ let g:airline#extensions#tabline#fnamemod = ':t'                " Show just the 
 "----------------------------------------------------------------
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip                        " MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc                   " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = 'vendor/bundle'
+let g:ctrlp_custom_ignore = 'venv'
 let g:ctrlp_prompt_mappings = {
   \ 'PrtClearCache()':      ['<c-,>'],
   \ }
