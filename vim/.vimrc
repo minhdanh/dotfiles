@@ -24,7 +24,7 @@ Plugin 'airblade/vim-gitgutter'
 " Plugin 'scrooloose/syntastic'
 
 Plugin 'tpope/vim-surround'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Shougo/unite.vim'
@@ -216,14 +216,15 @@ let g:airline#extensions#tabline#fnamemod = ':t'                " Show just the 
 "----------------------------------------------------------------
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc                   " MacOSX/Linux
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = 'vendor/bundle'
-let g:ctrlp_custom_ignore = 'venv'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.png,*.jpg       " MacOSX/Linux
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|venv\|vendor/bundle',
+  \ }
 let g:ctrlp_prompt_mappings = {
   \ 'PrtClearCache()':      ['<c-,>'],
   \ }
 let g:ctrlp_use_caching = 0
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 "----------------------------------------------------------------
 
 " gitgutter config
