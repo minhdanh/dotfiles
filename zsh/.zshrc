@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/minhdanh/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -56,6 +56,7 @@ plugins=(
   bgnotify
   z
   kubectl
+  kube-ps1
   dotenv
   zsh-syntax-highlighting
 )
@@ -65,35 +66,9 @@ plugins=(
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 export PATH=$PATH:~/.kube/plugins/jordanwilson230
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-# export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
 # pretty Git log
 alias gl='git log --graph --pretty="%C(bold green)%h%Creset%C(auto)%d%Creset %s"'
 
@@ -112,8 +87,6 @@ alias h="history"
 
 alias afk="brightness 0 && /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
-# . /usr/local/etc/grc.bashrc
-# eval $(dircolors -b $HOME/.dircolors/dircolors.ansi-universal)
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export LC_ALL=en_US.UTF-8
@@ -126,7 +99,6 @@ alias less='less -m -g -i --underline-special --SILENT'
 export FZF_DEFAULT_COMMAND='rg --files --ignore-vcs'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source /usr/local/share/kube-ps1.sh
 PROMPT=$PROMPT'$(kube_ps1)'
 KUBE_PS1_SEPARATOR=''
 KUBE_PS1_NS_ENABLE=false
