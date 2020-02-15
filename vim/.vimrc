@@ -1,3 +1,4 @@
+set encoding=utf-8
 set nocompatible
 filetype off
 
@@ -66,7 +67,8 @@ set autoindent
 set smartindent
 set smartcase
 
-set list listchars=tab:»·,trail:·,nbsp:·                        " display extra whitespace
+set list listchars=tab:¦\ ,trail:·,nbsp:·                       " display extra whitespace
+hi SpecialKey ctermfg=66 guifg=#649A9A                          " change listchars color
 set cursorline                                                  " highlight current line
 
 set mouse=a

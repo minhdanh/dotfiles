@@ -51,7 +51,14 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bgnotify kubectl dotenv)
+plugins=(
+  git
+  bgnotify
+  z
+  kubectl
+  dotenv
+  zsh-syntax-highlighting
+)
 
 # User configuration
 
@@ -63,7 +70,7 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -106,7 +113,6 @@ alias h="history"
 alias afk="brightness 0 && /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # . /usr/local/etc/grc.bashrc
-. `brew --prefix`/etc/profile.d/z.sh
 # eval $(dircolors -b $HOME/.dircolors/dircolors.ansi-universal)
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
