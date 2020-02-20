@@ -106,16 +106,16 @@ inoremap ,, <C-o>$
 nnoremap ff :Rg <C-R><C-W><CR>
 
 " Move to the next buffer
-nmap <leader>l :bnext<CR>
+nnoremap <silent> <c-l> :bnext<CR>
 " Move to the previous buffer
-nmap <leader>hh :bprevious<CR>
+nnoremap <silent> <c-h> :bprevious<CR>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap <leader>q :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader>a :ls<CR>
 " Switch to previously edited buffer
-nnoremap <silent> <C-l> :b#<CR>
+nnoremap <silent> <C-m> :b#<CR>
 " Toggle highlight search
 nmap <leader>m set hlsearch!<cr>
 " Add a new line without entering insert mode
