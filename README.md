@@ -8,3 +8,5 @@
 - ripgrep
 - exa
 - brightness
+- z
+- terminal-notifier

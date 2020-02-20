@@ -52,12 +52,20 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
   bgnotify
-  z
-  kubectl
-  kube-ps1
+  colored-man-pages
+  dircycle
+  docker
   dotenv
+  encode64
+  git
+  gitignore
+  history-substring-search
+  kube-ps1
+  kubectl
+  magic-enter
+  timer
+  z
   zsh-syntax-highlighting
 )
 
