@@ -67,8 +67,14 @@ plugins=(
   kube-ps1
   kubectl
   magic-enter
+  ripgrep
+  safe-paste
+  systemadmin
+  thefuck
   timer
+  urltools
   z
+  zsh_reload
   zsh-syntax-highlighting
 )
 
