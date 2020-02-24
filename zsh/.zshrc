@@ -68,7 +68,6 @@ plugins=(
   kubectl
   magic-enter
   ripgrep
-  safe-paste
   systemadmin
   thefuck
   timer
