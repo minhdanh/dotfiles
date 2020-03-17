@@ -63,14 +63,11 @@ plugins=(
   encode64
   git
   gitignore
-  history-substring-search
   kube-ps1
   kubectl
   magic-enter
   ripgrep
   systemadmin
-  thefuck
-  timer
   urltools
   z
   zsh_reload
