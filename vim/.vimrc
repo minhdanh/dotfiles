@@ -104,6 +104,8 @@ inoremap ,, <C-o>$
 
 " find current world quickly using fzf with ripgrep
 nnoremap ff :Rg <C-R><C-W><CR>
+" find current selected text in visual mode quickly using fzf with ripgrep
+vnoremap ff y:Rg <C-R>"<CR>
 
 " Move to the next buffer
 nnoremap <silent> <c-l> :bnext<CR>
