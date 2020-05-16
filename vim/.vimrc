@@ -212,9 +212,7 @@ let g:airline_theme = 'term_light'
 " fzf
 "
 " Open files in horizontal split
-nnoremap <silent> <c-p> :call fzf#run({
-\   'down': '40%',
-\   'sink': 'e' })<CR>
+nnoremap <silent> <c-p> :GFiles<CR>
 
 " Open files in vertical horizontal split
 nnoremap <silent> <c-k> :call fzf#run({
@@ -224,14 +222,7 @@ nnoremap <silent> <c-k> :call fzf#run({
 " Open buffers
 nnoremap <silent> <c-n> :Buffers<CR>
 
-nnoremap <silent> <Leader>C :call fzf#run({
-\   'source':
-\     map(split(globpath(&rtp, "colors/*.vim"), "\n"),
-\         "substitute(fnamemodify(v:val, ':t'), '\\..\\{-}$', '', '')"),
-\   'sink':    'colo',
-\   'options': '+m',
-\   'left':    30
-\ })<CR>
+nnoremap <silent> <Leader>C :Colors<CR>
 
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 
