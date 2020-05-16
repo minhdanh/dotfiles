@@ -38,6 +38,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'hashivim/vim-terraform'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'stephpy/vim-yaml'
+Plugin 'fatih/vim-go'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -169,7 +170,6 @@ vnoremap < <gv
 
 " defx
 noremap <leader>k :Defx -split=vertical -winwidth=50 -direction=topleft -resume -toggle<CR>
-" nnoremap vf :Defx -split=vertical -winwidth=50 -direction=topleft `expand('%:p:h')` -search=`expand('%:p')` -toggle<CR>
 nnoremap vf :Defx -split=vertical -winwidth=50 -direction=topleft -search=`expand('%:p')` -toggle<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
@@ -297,12 +297,12 @@ let g:gitgutter_highlight_lines = 0
 
 " vim-go
 "----------------------------------------------------------------
-" let g:go_fmt_autosave = 0
-" let g:go_highlight_functions = 1
-" let g:go_highlight_methods = 1
-" let g:go_highlight_structs = 1
-" let g:go_highlight_operators = 1
-" let g:go_highlight_build_constraints = 1
+let g:go_fmt_autosave = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 "----------------------------------------------------------------
 
 " indentLine
@@ -313,4 +313,4 @@ let g:indentLine_enabled = 1
 " vim-terraform
 "----------------------------------------------------------------
 let g:terraform_align = 1
-let g:terraform_fmt_on_save = 1
+let g:terraform_fmt_on_save = 0
