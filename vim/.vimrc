@@ -25,7 +25,9 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/vimfiler.vim'
+Plugin 'Shougo/defx.nvim'
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
 
 Plugin 'Yggdroot/indentLine'
 Plugin 'Raimondi/delimitMate'
@@ -165,18 +167,79 @@ vnoremap > >gv
 vnoremap < <gv
 "----------------------------------------------------------------
 
-" vimfiler
-"----------------------------------------------------------------
-let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_ignore_pattern = '^\%(\.git\|\.DS_Store\|\.swp\)$'
-" Enable file operation commands.
-call vimfiler#custom#profile('default', 'context', {
-      \ 'safe' : 0,
-      \ })
-noremap <leader>k :VimFilerExplorer<CR>
-" autocmd VimEnter * VimFilerExplorer                           " Display vimfiler sidebar after starting Vim
-nnoremap vf :VimFilerExplorer -find<CR>
-"----------------------------------------------------------------
+" defx
+noremap <leader>k :Defx -split=vertical -winwidth=50 -direction=topleft -resume -toggle<CR>
+" nnoremap vf :Defx -split=vertical -winwidth=50 -direction=topleft `expand('%:p:h')` -search=`expand('%:p')` -toggle<CR>
+nnoremap vf :Defx -split=vertical -winwidth=50 -direction=topleft -search=`expand('%:p')` -toggle<CR>
+autocmd FileType defx call s:defx_my_settings()
+function! s:defx_my_settings() abort
+  " Define mappings
+  nnoremap <silent><buffer><expr> <CR>
+  \ defx#is_directory() ?
+    \ defx#do_action('open_tree') :
+    \ defx#do_action('drop')
+  nnoremap <silent><buffer><expr> c
+  \ defx#do_action('copy')
+  nnoremap <silent><buffer><expr> m
+  \ defx#do_action('move')
+  nnoremap <silent><buffer><expr> p
+  \ defx#do_action('paste')
+  nnoremap <silent><buffer><expr> l
+  \ defx#is_directory() ?
+    \ defx#do_action('open_tree') :
+    \ defx#do_action('drop')
+  nnoremap <silent><buffer><expr> E
+  \ defx#do_action('open', 'vsplit')
+  nnoremap <silent><buffer><expr> P
+  \ defx#do_action('open', 'pedit')
+  nnoremap <silent><buffer><expr> K
+  \ defx#do_action('new_directory')
+  nnoremap <silent><buffer><expr> N
+  \ defx#do_action('new_file')
+  nnoremap <silent><buffer><expr> M
+  \ defx#do_action('new_multiple_files')
+  nnoremap <silent><buffer><expr> C
+  \ defx#do_action('toggle_columns',
+  \                'mark:indent:icon:filename:type:size:time')
+  nnoremap <silent><buffer><expr> S
+  \ defx#do_action('toggle_sort', 'time')
+  nnoremap <silent><buffer><expr> d
+  \ defx#do_action('remove')
+  nnoremap <silent><buffer><expr> r
+  \ defx#do_action('rename')
+  nnoremap <silent><buffer><expr> !
+  \ defx#do_action('execute_command')
+  nnoremap <silent><buffer><expr> x
+  \ defx#do_action('execute_system')
+  nnoremap <silent><buffer><expr> yy
+  \ defx#do_action('yank_path')
+  nnoremap <silent><buffer><expr> .
+  \ defx#do_action('toggle_ignored_files')
+  nnoremap <silent><buffer><expr> ;
+  \ defx#do_action('repeat')
+  nnoremap <silent><buffer><expr> h
+  \ defx#is_opened_tree() ?
+    \ defx#do_action('open_tree') :
+    \ defx#do_action('close_tree')
+  nnoremap <silent><buffer><expr> ~
+  \ defx#do_action('cd')
+  nnoremap <silent><buffer><expr> q
+  \ defx#do_action('quit')
+  nnoremap <silent><buffer><expr> <Space>
+  \ defx#do_action('toggle_select') . 'j'
+  nnoremap <silent><buffer><expr> *
+  \ defx#do_action('toggle_select_all')
+  nnoremap <silent><buffer><expr> j
+  \ line('.') == line('$') ? 'gg' : 'j'
+  nnoremap <silent><buffer><expr> k
+  \ line('.') == 1 ? 'G' : 'k'
+  nnoremap <silent><buffer><expr> <C-l>
+  \ defx#do_action('redraw')
+  nnoremap <silent><buffer><expr> <C-g>
+  \ defx#do_action('print')
+  nnoremap <silent><buffer><expr> cd
+  \ defx#do_action('change_vim_cwd')
+endfunction
 
 " custom commands
 "----------------------------------------------------------------
