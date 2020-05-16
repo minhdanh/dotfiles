@@ -1,46 +1,40 @@
+call plug#begin('~/.vim/plugged')
+
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-surround'
+Plug 'airblade/vim-gitgutter'
+Plug 'zivyangll/git-blame.vim'
+Plug 'Yggdroot/indentLine'
+" Plug 'Raimondi/delimitMate'
+Plug 'godlygeek/tabular'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+
+Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+Plug 'flazz/vim-colorschemes'
+
+" Plugin 'Shougo/unite.vim'
+Plug 'Shougo/defx.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'scrooloose/syntastic'
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer' }
+Plug 'majutsushi/tagbar'
+
+Plug 'hashivim/vim-terraform', { 'for': ['terraform'] }
+Plug 'stephpy/vim-yaml', { 'for': ['yaml'] }
+Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoUpdateBinaries' }
+
+call plug#end()
+
 set encoding=utf-8
 set nocompatible
 filetype off
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-set rtp+=/usr/local/opt/fzf
-
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-
-" Plugin 'mbbill/undotree'
-" Plugin 'majutsushi/tagbar'
-
-" Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-commentary'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'zivyangll/git-blame.vim'
-
-" Plugin 'scrooloose/syntastic'
-
-Plugin 'tpope/vim-surround'
-Plugin 'junegunn/fzf.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/defx.nvim'
-Plugin 'roxma/nvim-yarp'
-Plugin 'roxma/vim-hug-neovim-rpc'
-
-Plugin 'Yggdroot/indentLine'
-Plugin 'Raimondi/delimitMate'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'godlygeek/tabular'
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'hashivim/vim-terraform'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'stephpy/vim-yaml'
-Plugin 'fatih/vim-go'
-
-call vundle#end()            " required
 filetype plugin indent on    " required
 
 " Theme
@@ -50,9 +44,7 @@ set background=dark
 set term=xterm-256color
 colorscheme solarized
 
-
-set relativenumber
-set number                                                      " display line number
+set number relativenumber                                       " display line number and relative line number
 set colorcolumn=80
 set numberwidth=5
 set incsearch                                                   " do incremental searching
@@ -117,8 +109,6 @@ nnoremap <silent> <c-h> :bprevious<CR>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap <leader>q :bp <BAR> bd #<CR>
-" Show all open buffers and their status
-nmap <leader>a :ls<CR>
 " Switch to previously edited buffer
 nnoremap <silent> <C-m> :b#<CR>
 " Toggle highlight search
@@ -126,8 +116,6 @@ nmap <leader>m set hlsearch!<cr>
 " Add a new line without entering insert mode
 nmap <leader>n o<Esc>
 nmap <leader>N O<Esc>
-" Close syntastic location list
-nmap <leader>m :lclose<cr>
 
 " Toggle tagbar
 nmap <leader>t :TagbarToggle<CR>
@@ -144,7 +132,7 @@ au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 "----------------------------------------------------------------
 
 " Yaml settings
-au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
+" au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
 
 " map j to gj and k to gk, so line navigation ignores line wrap
 nnoremap k gk
@@ -293,6 +281,7 @@ let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 "----------------------------------------------------------------
 let g:gitgutter_escape_grep = 1
 let g:gitgutter_highlight_lines = 0
+highlight clear SignColumn
 "----------------------------------------------------------------
 
 " vim-go
@@ -313,4 +302,8 @@ let g:indentLine_enabled = 1
 " vim-terraform
 "----------------------------------------------------------------
 let g:terraform_align = 1
-let g:terraform_fmt_on_save = 0
+let g:terraform_fmt_on_save = 1
+
+" vim-numbertoggle
+"----------------------------------------------------------------
+highlight CursorLineNr ctermbg=0 cterm=none
