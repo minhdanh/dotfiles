@@ -97,8 +97,15 @@ alias glla='gla --all'
 alias ls="exa -agh"
 alias ll="exa -abglh"
 alias h="history"
+alias vault_login="vault login -method oidc role=infra -format=json | jq '.auth.client_token' | (read a; echo export VAULT_TOKEN=$a)"
 
 alias afk="brightness 0 && /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+functions echopy() {
+  read value
+  echo $value
+  echo $value | pbcopy
+}
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
