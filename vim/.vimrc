@@ -154,6 +154,21 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 " retain selection after moving block
 vnoremap > >gv
 vnoremap < <gv
+
+" allow toggling between local and default mode
+function TabToggle()
+  if &expandtab
+    set shiftwidth=8
+    set softtabstop=0
+    set noexpandtab
+  else
+    set shiftwidth=2
+    set softtabstop=2
+    set expandtab
+  endif
+endfunction
+nmap <leader>] mz:execute TabToggle()<CR>'z
+
 "----------------------------------------------------------------
 
 " defx
