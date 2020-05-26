@@ -2,11 +2,11 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'zivyangll/git-blame.vim'
 Plug 'Yggdroot/indentLine'
-" Plug 'Raimondi/delimitMate'
+Plug 'luochen1990/rainbow'
 Plug 'godlygeek/tabular'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'editorconfig/editorconfig-vim'
@@ -17,7 +17,6 @@ Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 
-" Plugin 'Shougo/unite.vim'
 Plug 'Shougo/defx.nvim'
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
@@ -173,7 +172,7 @@ nmap <leader>] mz:execute TabToggle()<CR>'z
 
 " defx
 noremap <leader>k :Defx -split=vertical -winwidth=50 -direction=topleft -resume -toggle<CR>
-nnoremap vf :Defx -split=vertical -winwidth=50 -direction=topleft -search=`expand('%:p')` -toggle<CR>
+nnoremap vf :Defx -split=vertical -winwidth=50 -direction=topleft -search=`expand('%:p')`<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
@@ -322,3 +321,7 @@ let g:terraform_fmt_on_save = 1
 " vim-numbertoggle
 "----------------------------------------------------------------
 highlight CursorLineNr ctermbg=0 cterm=none
+
+" rainbow
+"----------------------------------------------------------------
+let g:rainbow_active = 1
