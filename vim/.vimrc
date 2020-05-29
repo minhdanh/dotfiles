@@ -27,6 +27,7 @@ Plug 'majutsushi/tagbar'
 Plug 'hashivim/vim-terraform', { 'for': ['terraform'] }
 Plug 'stephpy/vim-yaml', { 'for': ['yaml'] }
 Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoUpdateBinaries' }
+Plug 'lumiliet/vim-twig', { 'for': ['twig'] }
 
 call plug#end()
 
