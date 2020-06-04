@@ -15,19 +15,20 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-Plug 'flazz/vim-colorschemes'
+" Plug 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
 
 Plug 'Shougo/defx.nvim'
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'kristijanhusak/defx-git'
+Plug 'kristijanhusak/defx-icons'
+
 " Plug 'scrooloose/syntastic'
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer' }
 Plug 'majutsushi/tagbar'
 
-Plug 'hashivim/vim-terraform', { 'for': ['terraform'] }
-Plug 'stephpy/vim-yaml', { 'for': ['yaml'] }
-Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoUpdateBinaries' }
-Plug 'lumiliet/vim-twig', { 'for': ['twig'] }
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
@@ -42,7 +43,9 @@ filetype plugin indent on    " required
 set t_Co=256
 set background=dark
 set term=xterm-256color
-colorscheme solarized
+" colorscheme solarized
+" colorscheme contrastneed
+colorscheme gruvbox
 
 set number relativenumber                                       " display line number and relative line number
 set colorcolumn=80
@@ -172,8 +175,8 @@ nmap <leader>] mz:execute TabToggle()<CR>'z
 "----------------------------------------------------------------
 
 " defx
-noremap <leader>k :Defx -split=vertical -winwidth=50 -direction=topleft -resume -toggle<CR>
-nnoremap vf :Defx -split=vertical -winwidth=50 -direction=topleft -search=`expand('%:p')`<CR>
+noremap <leader>k :Defx -split=vertical -winwidth=50 -direction=topleft -resume -toggle -columns=mark:indent:icons:filename:type:git<CR>
+nnoremap vf :Defx -split=vertical -winwidth=50 -direction=topleft -search=`expand('%:p')` -columns=mark:indent:icons:filename:type:git<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
@@ -243,6 +246,8 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> cd
   \ defx#do_action('change_vim_cwd')
 endfunction
+
+let g:defx_git#raw_mode = 1
 
 " custom commands
 "----------------------------------------------------------------
