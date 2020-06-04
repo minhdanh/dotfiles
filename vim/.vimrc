@@ -17,6 +17,8 @@ Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
 " Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
+Plug 'mhinz/vim-startify'
+Plug 'easymotion/vim-easymotion'
 
 Plug 'Shougo/defx.nvim'
   Plug 'roxma/nvim-yarp'
@@ -29,6 +31,7 @@ Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer' }
 Plug 'majutsushi/tagbar'
 
 Plug 'sheerun/vim-polyglot'
+Plug 'nvie/vim-flake8'
 
 call plug#end()
 
