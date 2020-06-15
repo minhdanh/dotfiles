@@ -15,10 +15,10 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-" Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
 Plug 'mhinz/vim-startify'
 Plug 'easymotion/vim-easymotion'
+Plug 'AlphaMycelium/pathfinder.vim'
 
 Plug 'Shougo/defx.nvim'
   Plug 'roxma/nvim-yarp'
@@ -79,11 +79,6 @@ set ic                                                          " ignore case se
 set backspace=indent,eol,start                                  " make backspace work as expected
 
 set conceallevel=0                                              " display quote in json files
-
-" Language specific settings
-"----------------------------------------------------------------
-" autocmd FileType python setlocal expandtab shiftwidth=2 softtabstop=2
-"----------------------------------------------------------------
 
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
@@ -265,7 +260,8 @@ let g:airline_powerline_fonts = 1
 let g:airline_exclude_preview = 1
 let g:airline#extensions#tabline#enabled = 1                    " Enable the list of buffers
 let g:airline#extensions#tabline#fnamemod = ':t'                " Show just the filename
-let g:airline_theme = 'term_light'
+" let g:airline_theme = 'term_light'
+let g:airline_theme = 'lucius'
 "----------------------------------------------------------------
 
 " syntastic config
