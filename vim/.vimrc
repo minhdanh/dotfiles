@@ -26,6 +26,9 @@ Plug 'Shougo/defx.nvim'
 Plug 'kristijanhusak/defx-git'
 Plug 'kristijanhusak/defx-icons'
 
+Plug 'voldikss/vim-floaterm'
+Plug 'liuchengxu/vim-clap'
+
 " Plug 'scrooloose/syntastic'
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer' }
 Plug 'majutsushi/tagbar'
@@ -330,3 +333,9 @@ highlight CursorLineNr ctermbg=0 cterm=none
 " rainbow
 "----------------------------------------------------------------
 let g:rainbow_active = 1
+
+" floater
+let g:floaterm_keymap_new    = '<F7>'
+let g:floaterm_keymap_prev   = '<F8>'
+let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_toggle = '<F10>'
