@@ -335,7 +335,7 @@ highlight CursorLineNr ctermbg=0 cterm=none
 let g:rainbow_active = 1
 
 " floater
-let g:floaterm_keymap_new    = '<F7>'
+let g:floaterm_keymap_new    = '<c-\>'
 let g:floaterm_keymap_prev   = '<F8>'
 let g:floaterm_keymap_next   = '<F9>'
-let g:floaterm_keymap_toggle = '<F10>'
+let g:floaterm_keymap_toggle = '<c-]>'
