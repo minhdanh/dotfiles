@@ -63,7 +63,6 @@ plugins=(
   encode64
   git
   gitignore
-  kube-ps1
   kubectl
   magic-enter
   ripgrep
@@ -97,6 +96,7 @@ alias glla='gla --all'
 alias ls="exa -agh"
 alias ll="exa -abglh"
 alias h="history"
+alias v="vim"
 alias vault_login="vault login -method oidc role=infra -format=json | jq '.auth.client_token' | (read a; echo export VAULT_TOKEN=$a)"
 
 alias afk="brightness 0 && /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
@@ -119,8 +119,5 @@ alias less='less -m -g -i --underline-special --SILENT'
 export FZF_DEFAULT_COMMAND='rg --files --ignore-vcs'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-PROMPT=$PROMPT'$(kube_ps1)'
-KUBE_PS1_SEPARATOR=''
-KUBE_PS1_NS_ENABLE=false
-KUBE_PS1_SUFFIX=") "
-KUBE_PS1_CTX_COLOR="blue"
+HISTSIZE=10000000
+SAVEHIST=10000000
