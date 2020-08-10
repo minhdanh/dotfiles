@@ -101,12 +101,19 @@ alias vault_login="vault login -method oidc role=infra -format=json | jq '.auth.
 
 alias afk="brightness 0 && /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
-functions echopy() {
+echopy() {
   read value
   echo $value
   echo $value | pbcopy
 }
 
+gclone() {
+  git clone "$1" && cd "$(basename "$1" .git)"
+}
+
+define() {
+  curl -s dict://dict.org/d:$1:wn | sed '/^[0-9]\{3\} /d'
+}
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export LC_ALL=en_US.UTF-8
