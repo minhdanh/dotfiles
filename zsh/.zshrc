@@ -93,6 +93,8 @@ alias gla='git log --graph --pretty="%C(bold green)%h%Creset %C(yellow)%an%Crese
 # pretty Git log, all references, show authors
 alias glla='gla --all'
 
+alias grst='git restore --staged'
+
 alias ls="exa -agh"
 alias ll="exa -abglh"
 alias h="history"
@@ -114,8 +116,9 @@ gclone() {
 define() {
   curl -s dict://dict.org/d:$1:wn | sed '/^[0-9]\{3\} /d'
 }
+
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOPATH/bin:$HOME/.local/bin
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
@@ -128,3 +131,9 @@ export FZF_DEFAULT_COMMAND='rg --files --ignore-vcs'
 
 HISTSIZE=10000000
 SAVEHIST=10000000
+
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
