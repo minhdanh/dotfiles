@@ -33,14 +33,13 @@ plugins=(
 
 # User configuration
 
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-
-source $ZSH/oh-my-zsh.sh
-
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin:$HOME/.local/bin
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+export GOPATH=$HOME/go
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/openssl@1.1/bin:$GOPATH/bin:$HOME/local/bin:$PATH"
+
+source $ZSH/oh-my-zsh.sh
 
 #export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 # export LESS=" -R "
@@ -49,6 +48,7 @@ export FZF_DEFAULT_COMMAND='rg --files --ignore-vcs'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f ~/.zshrc_common ] && source ~/.zshrc_common
+[ -f ~/.zshrc_local ] && source ~/.zshrc_local
 case "$OSTYPE" in
   darwin*)
     [ -f ~/.zshrc_macos ] && source ~/.zshrc_macos
