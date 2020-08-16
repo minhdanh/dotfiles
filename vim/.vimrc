@@ -18,7 +18,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
 Plug 'mhinz/vim-startify'
 Plug 'easymotion/vim-easymotion'
-Plug 'AlphaMycelium/pathfinder.vim'
 
 Plug 'Shougo/defx.nvim'
   Plug 'roxma/nvim-yarp'
@@ -34,6 +33,7 @@ Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer' }
 Plug 'majutsushi/tagbar'
 
 Plug 'sheerun/vim-polyglot'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nvie/vim-flake8'
 
 call plug#end()
@@ -49,6 +49,7 @@ filetype plugin indent on    " required
 set t_Co=256
 set background=dark
 set term=xterm-256color
+set termguicolors
 " colorscheme solarized
 " colorscheme contrastneed
 colorscheme gruvbox
