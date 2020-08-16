@@ -1,0 +1,36 @@
+# aliases
+
+# pretty Git log
+alias gl='git log --graph --pretty="%C(bold green)%h%Creset%C(auto)%d%Creset %s"'
+
+# pretty Git log, all references
+alias gll='gl --all'
+
+# pretty Git log, show authors
+alias gla='git log --graph --pretty="%C(bold green)%h%Creset %C(yellow)%an%Creset%C(auto)%d%Creset %s"'
+
+# pretty Git log, all references, show authors
+alias glla='gla --all'
+
+alias grst='git restore --staged'
+
+alias ls="exa -agh"
+alias ll="exa -abglh"
+alias h="history"
+alias v="vim"
+alias vault_login="vault login -method oidc role=infra -format=json | jq '.auth.client_token' | (read a; echo export VAULT_TOKEN=$a)"
+
+# alias less='less -m -g -i --underline-special --SILENT'
+alias less='bat'
+
+## functions
+
+# git clone a repo and cd to the directory of that repo
+function gclone() {
+  git clone "$1" && cd "$(basename "$1" .git)"
+}
+
+# look up a word from dict.org
+function define() {
+  curl -s dict://dict.org/d:$1:wn | sed '/^[0-9]\{3\} /d'
+}

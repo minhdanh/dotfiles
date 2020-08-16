@@ -1,0 +1,8 @@
+alias afk="brightness 0 && /System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# copy input to clipboard and print it to screen
+function echopy() {
+  read value
+  echo $value
+  echo $value | pbcopy
+}

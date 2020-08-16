@@ -177,8 +177,8 @@ nmap <leader>] mz:execute TabToggle()<CR>'z
 "----------------------------------------------------------------
 
 " defx
-noremap <leader>k :Defx -split=vertical -winwidth=50 -direction=topleft -resume -toggle -columns=mark:indent:icons:filename:type:git<CR>
-nnoremap vf :Defx -split=vertical -winwidth=50 -direction=topleft -search=`expand('%:p')` -columns=mark:indent:icons:filename:type:git<CR>
+noremap <leader>k :Defx -split=vertical -winwidth=50 -direction=topleft -resume -toggle -columns=mark:indent:icons:filename:type:git -ignored-files=.git,.*.sw*<CR>
+nnoremap vf :Defx -split=vertical -winwidth=50 -direction=topleft -search=`expand('%:p')` -columns=mark:indent:icons:filename:type:git -ignored-files=.git,.*.sw*<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
@@ -233,7 +233,7 @@ function! s:defx_my_settings() abort
   \ defx#do_action('cd')
   nnoremap <silent><buffer><expr> q
   \ defx#do_action('quit')
-  nnoremap <silent><buffer><expr> <Space>
+  nnoremap <silent><buffer><expr> 0
   \ defx#do_action('toggle_select') . 'j'
   nnoremap <silent><buffer><expr> *
   \ defx#do_action('toggle_select_all')
