@@ -121,7 +121,6 @@ nmap <leader>m set hlsearch!<cr>
 " Add a new line without entering insert mode
 nmap <leader>n o<Esc>
 nmap <leader>N O<Esc>
-
 " Toggle tagbar
 nmap <leader>t :TagbarToggle<CR>
 
@@ -177,8 +176,8 @@ nmap <leader>] mz:execute TabToggle()<CR>'z
 "----------------------------------------------------------------
 
 " defx
-noremap <leader>k :Defx -split=vertical -winwidth=50 -direction=topleft -resume -toggle -columns=mark:indent:icons:filename:type:git -ignored-files=.git,.*.sw*<CR>
-nnoremap vf :Defx -split=vertical -winwidth=50 -direction=topleft -search=`expand('%:p')` -columns=mark:indent:icons:filename:type:git -ignored-files=.git,.*.sw*<CR>
+noremap <leader>k :Defx -split=vertical -winwidth=50 -direction=topleft -resume -toggle -columns=mark:indent:icons:filename:type:git -ignored-files=.git,.*.sw*<CR><CR>
+nnoremap vf :Defx -split=vertical -winwidth=50 -direction=topleft -search=`expand('%:p')` -columns=mark:indent:icons:filename:type:git -ignored-files=.git,.*.sw*<CR><CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
@@ -340,3 +339,7 @@ let g:floaterm_keymap_new    = '<c-\>'
 let g:floaterm_keymap_prev   = '<F8>'
 let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<c-]>'
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal = 0
