@@ -17,11 +17,11 @@ alias grst='git restore --staged'
 alias ls="exa -agh"
 alias ll="exa -abglh"
 alias h="history"
-alias v="vim"
+alias v="nvim"
 alias vault_login="vault login -method oidc role=infra -format=json | jq '.auth.client_token' | (read a; echo export VAULT_TOKEN=$a)"
 
 # alias less='less -m -g -i --underline-special --SILENT'
-alias less='bat'
+alias less='bat --style=plain'
 
 ## functions
 
