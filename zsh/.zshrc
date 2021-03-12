@@ -29,6 +29,7 @@ plugins=(
   z
   zsh_reload
   zsh-syntax-highlighting
+  # zsh-autosuggestions
 )
 
 # User configuration

@@ -6,7 +6,7 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'zivyangll/git-blame.vim'
 Plug 'Yggdroot/indentLine'
-Plug 'luochen1990/rainbow'
+" Plug 'luochen1990/rainbow'
 Plug 'godlygeek/tabular'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'editorconfig/editorconfig-vim'
@@ -15,7 +15,10 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
+Plug 'sainnhe/sonokai'
+Plug 'joshdick/onedark.vim'
 Plug 'mhinz/vim-startify'
 Plug 'easymotion/vim-easymotion'
 
@@ -25,12 +28,12 @@ Plug 'Shougo/defx.nvim'
 Plug 'kristijanhusak/defx-git'
 Plug 'kristijanhusak/defx-icons'
 
-Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vim-clap'
 
 " Plug 'scrooloose/syntastic'
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer' }
 Plug 'majutsushi/tagbar'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -50,9 +53,10 @@ set t_Co=256
 set background=dark
 set term=xterm-256color
 set termguicolors
-" colorscheme solarized
+colorscheme solarized
 " colorscheme contrastneed
-colorscheme gruvbox
+" colorscheme gruvbox
+" colorscheme sonokai
 
 set number relativenumber                                       " display line number and relative line number
 set colorcolumn=80
@@ -334,12 +338,12 @@ highlight CursorLineNr ctermbg=0 cterm=none
 "----------------------------------------------------------------
 let g:rainbow_active = 1
 
-" floater
-let g:floaterm_keymap_new    = '<c-\>'
-let g:floaterm_keymap_prev   = '<F8>'
-let g:floaterm_keymap_next   = '<F9>'
-let g:floaterm_keymap_toggle = '<c-]>'
-
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
+
+" sonokai theme
+let g:sonokai_style = 'andromeda'
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+let g:airline_theme = 'sonokai'

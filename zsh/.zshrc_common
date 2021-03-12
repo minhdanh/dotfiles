@@ -34,3 +34,5 @@ function gclone() {
 function define() {
   curl -s dict://dict.org/d:$1:wn | sed '/^[0-9]\{3\} /d'
 }
+
+alias joke='curl https://icanhazdadjoke.com'
