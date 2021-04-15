@@ -7,6 +7,16 @@ function echopy() {
   echo -n $value | pbcopy
 }
 
+function ec2find() {
+  name=$1
+  profile=$2
+  if [ -z "${profile}" ]; then
+    aws ec2 describe-instances --profile cxa --region ap-southeast-1  --query 'Reservations[*].Instances[].[Tags[?Key==`Name`].Value[],PrivateIpAddress][][]' --filter 'Name=tag:Name,Values="*'$name'*"' | jq '.[]' | tr -d '"'
+  else
+    aws ec2 describe-instances --profile $profile --region ap-southeast-1  --query 'Reservations[*].Instances[].[Tags[?Key==`Name`].Value[],PrivateIpAddress][][]' --filter 'Name=tag:Name,Values="*'$name'*"' | jq '.[]' | tr -d '"'
+  fi
+}
+
 export EDITOR=nvim
 export PATH="/usr/local/opt/curl@7.71.1/bin:$PATH"
 
