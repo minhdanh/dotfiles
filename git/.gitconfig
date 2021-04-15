@@ -1,0 +1,44 @@
+# This is Git's per-user configuration file.
+[user]
+	name = minhdanh
+	email = minhdanh@users.noreply.github.com
+[status]
+ submoduleSummary = true
+[core]
+  editor = /usr/local/bin/vim
+  pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -RFX
+	hooksPath = /Users/minhdanh/.git-hooks
+[diff]
+  algorithm = minimal
+  compactionHeuristic = true
+  renames = true
+[color]
+  ui = always
+[color "diff"]
+  commit = green
+  meta = yellow
+  frag = cyan
+  old = red
+  new = green
+  whitespace = red reverse
+[color "diff-highlight"]
+  oldNormal = red
+  oldHighlight = red 52
+  newNormal = green
+  newHighlight = green 22
+
+[interactive]
+  diffFilter = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight
+[url "git@github.com:"]
+ insteadOf = https://github.com/
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[rerere]
+	enabled = true
+[pull]
+	rebase = false
+[diff]
+	colorMoved = default
