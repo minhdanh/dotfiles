@@ -1,3 +1,5 @@
 test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 eval $($(brew --prefix)/bin/brew shellenv)
 export PATH="/snap/bin:/usr/lib/dart/bin:$PATH"
+export PATH="$PATH:$HOME/AndroidSDK/build-tools/30.0.3:$HOME/AndroidSDK/tools:$HOME/AndroidSDK/emulator:$HOME/AndroidSDK/platform-tools:$HOME/AndroidSDK/cmdline-tools/latest/bin"
+export EDITOR="/home/linuxbrew/.linuxbrew/bin/nvim"
