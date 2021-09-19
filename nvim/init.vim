@@ -4,6 +4,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-commentary'
 " Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
 Plug 'airblade/vim-gitgutter'
 Plug 'zivyangll/git-blame.vim'
 Plug 'Yggdroot/indentLine'
@@ -15,8 +16,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
 Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-Plug 'flazz/vim-colorschemes'
+Plug 'vim-airline/vim-airline-themes'
+" Plug 'flazz/vim-colorschemes'
 " Plug 'morhetz/gruvbox'
 " Plug 'sainnhe/sonokai'
 Plug 'joshdick/onedark.vim'
@@ -32,12 +33,14 @@ Plug 'kristijanhusak/defx-icons'
 Plug 'liuchengxu/vim-clap'
 
 " Plug 'scrooloose/syntastic'
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer' }
+" Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer' }
 Plug 'majutsushi/tagbar'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Auto complete
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nvie/vim-flake8'
@@ -329,7 +332,7 @@ let g:indentLine_enabled = 1
 
 " vim-terraform
 "----------------------------------------------------------------
-let g:terraform_align = 0
+let g:terraform_align = 1
 let g:terraform_fmt_on_save = 1
 
 " vim-numbertoggle
@@ -367,4 +370,34 @@ let g:sonokai_disable_italic_comment = 1
 " sign define semshiError text=E> texthl=semshiErrorSigna
 
 " deoplete.
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
+
+" coc
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-flutter']
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
