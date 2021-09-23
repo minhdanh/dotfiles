@@ -9,15 +9,13 @@
 - brightness
 - z
 - terminal-notifier
+- stow
 
 ## Links config files
 
 ```
-ln -s $(pwd)/vim/.vimrc ~/.vimrc
-ln -s $(pwd)/tmux/.tmux.conf ~/.tmux.conf
-
-ln -s $(pwd)/zsh/.zshrc ~/.zshrc
-ln -s $(pwd)/zsh/.zshrc_common ~/.zshrc_common
-ln -s $(pwd)/zsh/.zshrc_linux ~/.zshrc_linux
-ln -s $(pwd)/zsh/.zshrc_macos ~/.zshrc_macos
+stow -vt ~ zsh
+stow -vt ~ nvim
+stow -vt ~ vim
+stow -vt ~ tmux
 ```
