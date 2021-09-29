@@ -1,5 +1,20 @@
 test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-eval $($(brew --prefix)/bin/brew shellenv)
-export PATH="/snap/bin:/usr/lib/dart/bin:$PATH"
-export PATH="$PATH:$HOME/AndroidSDK/build-tools/30.0.3:$HOME/AndroidSDK/tools:$HOME/AndroidSDK/emulator:$HOME/AndroidSDK/platform-tools:$HOME/AndroidSDK/cmdline-tools/latest/bin"
-export EDITOR="/home/linuxbrew/.linuxbrew/bin/nvim"
+# eval $($(brew --prefix)/bin/brew shellenv)
+# export PATH="$PATH:$HOME/AndroidSDK/build-tools/30.0.3:$HOME/AndroidSDK/tools:$HOME/AndroidSDK/emulator:$HOME/AndroidSDK/platform-tools:$HOME/AndroidSDK/cmdline-tools/latest/bin"
+export PATH="$PATH:/opt/flutter/bin:$HOME/.local/bin"
+export EDITOR="nvim"
+
+alias clb="xsel -b"
+
+function say() {
+    echo $1 | festival --tts
+}
+
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
+[ ! -n "$TMUX" ] && \
+    tmux
