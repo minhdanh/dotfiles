@@ -255,6 +255,8 @@ endfunction
 let g:defx_git#raw_mode = 1
 hi Defx_filename_directory guifg=#97C379
 
+let g:defx_icons_column_length = 2
+
 " custom commands
 "----------------------------------------------------------------
 "----------------------------------------------------------------
