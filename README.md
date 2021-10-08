@@ -32,4 +32,6 @@ stow -vt ~ git
 stow -vt ~ nvim
 stow -vt ~ vim
 stow -vt ~ tmux
+stow -vt ~ lf
+stow -vt ~ oh-my-zsh
 ```
