@@ -27,7 +27,6 @@ plugins=(
   ripgrep
   urltools
   z
-  zsh_reload
   zsh-syntax-highlighting
   # zsh-autosuggestions
 )
