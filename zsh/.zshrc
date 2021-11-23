@@ -37,7 +37,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 export GOPATH=$HOME/go
-export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/openssl@1.1/bin:$GOPATH/bin:$HOME/local/bin"
+export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/openssl@1.1/bin:$GOPATH/bin:$HOME/.local/bin"
 
 source $ZSH/oh-my-zsh.sh
 
