@@ -23,6 +23,10 @@ alias cbc="ctrlcb-copy"
 alias cbp="ctrlcb-paste"
 alias vault_login="vault login -method oidc role=infra -format=json | jq '.auth.client_token' | (read a; echo export VAULT_TOKEN=$a)"
 
+source <(kubectl completion zsh)
+alias kubectl=kubecolor
+compdef kubecolor=kubectl
+
 # alias less='less -m -g -i --underline-special --SILENT'
 alias less='bat --style=plain'
 
