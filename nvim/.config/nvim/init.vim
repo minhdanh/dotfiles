@@ -119,7 +119,7 @@ nmap <leader>q :bp <BAR> bd #<CR>
 " Switch to previously edited buffer
 nnoremap <silent> <C-m> :b#<CR>
 " Toggle highlight search
-nmap <leader>m set hlsearch!<cr>
+nmap <leader>m :set hlsearch!<cr>
 " Add a new line without entering insert mode
 nmap <leader>n o<Esc>
 nmap <leader>N O<Esc>
