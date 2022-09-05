@@ -181,13 +181,18 @@ nmap <leader>] mz:execute TabToggle()<CR>'z
 
 " defx
 noremap <leader>k :Defx -split=vertical -winwidth=50 -direction=topleft -resume -toggle -columns=mark:indent:icons:filename:type:git -ignored-files=.git,.*.sw*<CR><CR>
-nnoremap vf :Defx -split=vertical -winwidth=50 -direction=topleft -search=`expand('%:p')` -columns=mark:indent:icons:filename:type:git -ignored-files=.git,.*.sw*<CR><CR>
+nnoremap vf :Defx -split=vertical -winwidth=50 -direction=topleft `escape(expand('%:p:h'), ' :')` -search=`expand('%:p')` -columns=mark:indent:icons:filename:type:git -ignored-files=.git,.*.sw*<CR><CR>
+
+autocmd User DefxDirChanged
+	\ echomsg 'defx current directory is changed'
+autocmd BufWritePost * call defx#redraw()
 autocmd FileType defx call s:defx_my_settings()
+
 function! s:defx_my_settings() abort
   " Define mappings
   nnoremap <silent><buffer><expr> <CR>
   \ defx#is_directory() ?
-    \ defx#do_action('open_tree') :
+    \ defx#do_action('open_tree', 'toggle') :
     \ defx#do_action('drop')
   nnoremap <silent><buffer><expr> c
   \ defx#do_action('copy')
@@ -195,14 +200,23 @@ function! s:defx_my_settings() abort
   \ defx#do_action('move')
   nnoremap <silent><buffer><expr> p
   \ defx#do_action('paste')
+  function! CustomOpen(context) abort
+    let is_directory = defx#is_directory()
+    if is_directory
+      call defx#call_action('open_tree')
+      norm j
+    else
+      call defx#call_action('drop')
+    endif
+  endfunction
   nnoremap <silent><buffer><expr> l
-  \ defx#is_directory() ?
-    \ defx#do_action('open_tree') :
-    \ defx#do_action('drop')
+    \ defx#do_action('call', 'CustomOpen')
   nnoremap <silent><buffer><expr> E
   \ defx#do_action('open', 'vsplit')
   nnoremap <silent><buffer><expr> P
   \ defx#do_action('open', 'pedit')
+  nnoremap <silent><buffer><expr> o
+  \ defx#do_action('open_tree', 'toggle')
   nnoremap <silent><buffer><expr> K
   \ defx#do_action('new_directory')
   nnoremap <silent><buffer><expr> N
@@ -229,9 +243,7 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> ;
   \ defx#do_action('repeat')
   nnoremap <silent><buffer><expr> h
-  \ defx#is_opened_tree() ?
-    \ defx#do_action('open_tree') :
-    \ defx#do_action('close_tree')
+  \ defx#do_action('close_tree')
   nnoremap <silent><buffer><expr> ~
   \ defx#do_action('cd')
   nnoremap <silent><buffer><expr> q
