@@ -1,10 +1,4 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": [
-    "dart"
-  ],
-  // coc-flutter
-  "flutter.openDevLogSplitCommand": "botright 20split",
-  "flutter.autoOpenDevLog": true,
   // diagnostic
   "diagnostic.infoSign":            "ღ",
   "diagnostic.hintSign":            "ஐ",
