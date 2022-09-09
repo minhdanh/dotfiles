@@ -318,6 +318,8 @@ nnoremap <silent> <c-k> :call fzf#run({
 " Open buffers
 nnoremap <silent> <c-n> :Buffers<CR>
 
+nnoremap <silent> <c-g> :Rg<CR>
+
 nnoremap <silent> <Leader>C :Colors<CR>
 
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
@@ -391,7 +393,7 @@ let g:sonokai_disable_italic_comment = 1
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-flutter']
+let g:coc_global_extensions = ['coc-json', 'coc-git',]
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :

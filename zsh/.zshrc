@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
-ZSH_THEME="clean"
+ZSH_THEME="mida"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"

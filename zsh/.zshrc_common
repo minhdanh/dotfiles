@@ -16,6 +16,12 @@ alias glla='gla --all'
 
 alias grst='git restore --staged'
 
+alias gdft='GIT_EXTERNAL_DIFF=difft git difftool'
+
+alias glpe='GIT_EXTERNAL_DIFF=difft git log -p --ext-diff'
+
+alias gse='GIT_EXTERNAL_DIFF=difft git show --ext-diff'
+
 alias ls="exa -agh"
 alias ll="exa -abglh"
 alias h="history"
@@ -30,6 +36,7 @@ alias kubectl=kubecolor
 compdef kubecolor=kubectl
 
 # alias less='less -m -g -i --underline-special --SILENT'
+# alias less='bat --style=plain --theme=Coldark-Dark'
 alias less='bat --style=plain'
 
 ## functions

@@ -23,6 +23,7 @@
 - helm
 - terminal-notifier
 - stow
+- difftastic
 
 ## Links config files
 
