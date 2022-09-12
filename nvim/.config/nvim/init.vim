@@ -246,6 +246,8 @@ function! s:defx_my_settings() abort
   \ defx#do_action('close_tree')
   nnoremap <silent><buffer><expr> ~
   \ defx#do_action('cd')
+  nnoremap <silent><buffer><expr> -
+  \ defx#do_action('cd', ['..'])
   nnoremap <silent><buffer><expr> q
   \ defx#do_action('quit')
   nnoremap <silent><buffer><expr> 0
