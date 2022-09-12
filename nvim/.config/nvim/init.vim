@@ -117,7 +117,7 @@ nnoremap <silent> <c-h> :bprevious<CR>
 " This replicates the idea of closing a tab
 nmap <leader>q :bp <BAR> bd #<CR>
 " Switch to previously edited buffer
-nnoremap <silent> <C-m> :b#<CR>
+nnoremap <silent> <c-y> :b#<CR>
 " Toggle highlight search
 nmap <leader>m :set hlsearch!<cr>
 " Add a new line without entering insert mode
