@@ -53,7 +53,7 @@ function define() {
 alias joke='curl https://icanhazdadjoke.com'
 
 function def() {
-  CONTENT="$@ trong tiếng Anh có nghĩa là gì?"
+  CONTENT="$@ có nghĩa là gì?"
   hmm $CONTENT
 }
 
