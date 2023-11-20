@@ -1,3 +1,5 @@
+let g:polyglot_disabled = ['markdown']
+
 call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'tpope/vim-endwise'
@@ -7,8 +9,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'airblade/vim-gitgutter'
 Plug 'zivyangll/git-blame.vim'
-Plug 'Yggdroot/indentLine'
-" Plug 'luochen1990/rainbow'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'godlygeek/tabular'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'editorconfig/editorconfig-vim'
@@ -30,14 +31,14 @@ Plug 'Shougo/defx.nvim'
 Plug 'kristijanhusak/defx-git'
 Plug 'kristijanhusak/defx-icons'
 
-Plug 'liuchengxu/vim-clap'
+" Plug 'liuchengxu/vim-clap'
 
 " Plug 'scrooloose/syntastic'
-" Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer' }
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --go-completer' }
 Plug 'majutsushi/tagbar'
 " Auto complete
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -93,6 +94,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
+hi CursorLine ctermbg=234 guibg=#444444
 " custom mappings
 "----------------------------------------------------------------
 imap ;; <Esc>
@@ -141,6 +143,9 @@ au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 " au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
 
 autocmd FileType sh setlocal shiftwidth=2 softtabstop=2 expandtab
+
+" Auto remove whitespaces when saving file
+autocmd BufWritePre * :%s/\s\+$//e
 
 " map j to gj and k to gk, so line navigation ignores line wrap
 nnoremap k gk
@@ -320,9 +325,10 @@ nnoremap <silent> <c-k> :call fzf#run({
 " Open buffers
 nnoremap <silent> <c-n> :Buffers<CR>
 
-nnoremap <silent> <c-g> :Rg<CR>
+" nnoremap <silent> <c-g> :Rg<CR>
 
 nnoremap <silent> <Leader>C :Colors<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
 
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 
@@ -342,11 +348,6 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 "----------------------------------------------------------------
-
-" indentLine
-"----------------------------------------------------------------
-" let g:indentLine_conceallevel = 0
-let g:indentLine_enabled = 1
 
 " vim-terraform
 "----------------------------------------------------------------
@@ -419,3 +420,31 @@ endif
 " Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" indent-blankline.nvim
+lua <<EOF
+local highlight = {
+    "RainbowRed",
+    "RainbowYellow",
+    "RainbowBlue",
+    "RainbowOrange",
+    "RainbowGreen",
+    "RainbowViolet",
+    "RainbowCyan",
+}
+
+local hooks = require "ibl.hooks"
+-- create the highlight groups in the highlight setup hook, so they are reset
+-- every time the colorscheme changes
+hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+    vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+    vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+    vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+    vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+    vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+    vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+    vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+end)
+
+require("ibl").setup { indent = { highlight = highlight, char = "╎" } }
+EOF
