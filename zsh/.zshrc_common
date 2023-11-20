@@ -35,8 +35,8 @@ alias kubectl=kubecolor
 compdef kubecolor=kubectl
 
 # alias less='less -m -g -i --underline-special --SILENT'
-# alias less='bat --style=plain --theme=Coldark-Dark'
-alias less='bat --style=plain'
+alias less='bat --style=plain --theme=Coldark-Dark'
+# alias less='bat --style=plain'
 
 ## functions
 
