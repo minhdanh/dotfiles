@@ -53,11 +53,11 @@ function define() {
 alias joke='curl https://icanhazdadjoke.com'
 
 function def() {
-  CONTENT="$@ có nghĩa là gì?"
-  hmm $CONTENT
+  CONTENT="Hãy trả lời câu hỏi sau đây một cách đầy đủ: $@ có nghĩa là gì?"
+  hmm_google $CONTENT
 }
 
-function hmm() {
+function hmm_openai() {
   setopt LOCAL_OPTIONS NO_NOTIFY NO_MONITOR
   CONTENT="$@"
   (curl -s --location --request POST 'https://api.openai.com/v1/chat/completions' \
@@ -67,6 +67,27 @@ function hmm() {
   \"model\": \"gpt-3.5-turbo\",
   \"messages\": [{\"role\": \"user\", \"content\": \"${CONTENT}\"}]
   }" | jq -r '.choices[].message.content | gsub("[\\n]"; "")') &
+
+  pid=$!
+
+  spin='-\|/'
+
+  i=0
+  while kill -0 $pid 2>/dev/null
+  do
+    i=$(( (i+1) %4 ))
+    printf "\r${spin:$i:1}"
+    sleep .3
+  done
+}
+
+function hmm_google() {
+  setopt LOCAL_OPTIONS NO_NOTIFY NO_MONITOR
+  CONTENT="$@"
+  (curl -s https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent\?key\=$GOOGLE_AI_API_KEY \
+    -H 'Content-Type: application/json' \
+    -X POST \
+    -d "{\"contents\": [{ \"parts\":[{ \"text\": \"${CONTENT}\"}]}]}" 2> /dev/null | jq -r '.candidates[0].content.parts[0].text') &
 
   pid=$!
 
