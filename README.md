@@ -5,7 +5,7 @@
 - source-highlight
 - fzf
 - ripgrep
-- exa
+- eza
 - brightness
 - z
 - gping

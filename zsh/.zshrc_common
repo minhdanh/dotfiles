@@ -16,14 +16,14 @@ alias glla='gla --all'
 
 alias grst='git restore --staged'
 
-alias gdft='GIT_EXTERNAL_DIFF=difft git difftool'
+alias gdft='DFT_BACKGROUND=light GIT_EXTERNAL_DIFF=difft git difftool'
 
-alias glpe='GIT_EXTERNAL_DIFF=difft git log -p --ext-diff'
+alias glpe='DFT_BACKGROUND=light GIT_EXTERNAL_DIFF=difft git log -p --ext-diff'
 
-alias gse='GIT_EXTERNAL_DIFF=difft git show --ext-diff'
+alias gse='DFT_BACKGROUND=light GIT_EXTERNAL_DIFF=difft git show --ext-diff'
 
-alias ls="exa -agh"
-alias ll="exa -abglh"
+alias ls="eza -agh"
+alias ll="eza -abglh"
 alias h="history"
 alias v="nvim"
 alias vim="nvim"
