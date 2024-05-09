@@ -101,3 +101,9 @@ function hmm_google() {
     sleep .3
   done
 }
+
+function nslu() {
+  domain_name=$(echo "$1" | sed 's/https\?:\/\///' | awk -F/ '{print $1}')
+  echo $domain_name
+  nslookup $domain_name
+}
