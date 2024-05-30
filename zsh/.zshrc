@@ -47,8 +47,6 @@ source $ZSH/oh-my-zsh.sh
 export FZF_DEFAULT_COMMAND='rg --files --ignore-vcs'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-[ -f ~/.zshrc_common ] && source ~/.zshrc_common
-[ -f ~/.zshrc_local ] && source ~/.zshrc_local
 case "$OSTYPE" in
   darwin*)
     [ -f ~/.zshrc_macos ] && source ~/.zshrc_macos
@@ -57,6 +55,8 @@ case "$OSTYPE" in
     [ -f ~/.zshrc_linux ] && source ~/.zshrc_linux
   ;;
 esac
+[ -f ~/.zshrc_common ] && source ~/.zshrc_common
+[ -f ~/.zshrc_local ] && source ~/.zshrc_local
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
