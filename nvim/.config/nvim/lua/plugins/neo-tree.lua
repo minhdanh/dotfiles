@@ -9,8 +9,8 @@ return {
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     keys = {
-      { "<leader>k", ":Neotree<CR>", desc = "Open file manager sidebar", mode = "n" },
-      { "vf", ":Neotree reveal_file=%:p<CR>", desc = "Reveal current file in sidebar", mode = "n" }
+      { "<leader>k", ":Neotree<CR>",                 desc = "Open file manager sidebar",      mode = "n" },
+      { "vf",        ":Neotree reveal_file=%:p<CR>", desc = "Reveal current file in sidebar", mode = "n" }
     },
     config = function()
       require("neo-tree").setup({
@@ -22,8 +22,13 @@ return {
             ["N"] = "add",
             ["K"] = "add_directory",
           }
+        },
+        filesystem = {
+          filtered_items = {
+            hide_dotfiles = false
+          }
         }
-	    })
+      })
     end
   },
 }
