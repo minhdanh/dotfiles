@@ -43,7 +43,7 @@ vim.opt.listchars = { tab = "¦ ", trail = "·", nbsp = "·" }
 
 vim.o.undofile = true
 vim.o.undolevels = 10000
-vim.o.timeoutlen = 300 -- Lower than default (1000) to quickly trigger which-key
+-- vim.o.timeoutlen = 300 -- Lower than default (1000) to quickly trigger which-key
 -- Highlight SpecialKey
 vim.api.nvim_set_hl(0, "SpecialKey", { fg = "#649A9A" })
 

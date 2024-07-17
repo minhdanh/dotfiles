@@ -10,7 +10,7 @@ end
 map("v", "<leader>c", '"*y')
 
 -- Move to end of line in insert mode
-map("i", ",,", "<C-o>$")
+-- map("i", ",,", "<C-o>$")
 
 -- Find current word quickly using fzf with ripgrep
 -- map('n', 'ff', ':Rg <C-R><C-W><CR>')
