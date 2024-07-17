@@ -19,9 +19,10 @@ vim.opt.rtp:prepend(lazypath)
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = " "
 vim.g.autoformat = true
 vim.g.editorconfig_enable = true
+vim.g.have_nerd_font = true
 
 vim.o.number = true
 vim.o.relativenumber = true
