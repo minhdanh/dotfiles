@@ -53,3 +53,10 @@ map("v", "<A-k>", ":m '<-2<CR>gv=gv")
 -- Retain selection after moving block
 map("v", ">", ">gv")
 map("v", "<", "<gv")
+
+-- Consistent search direction with n and N
+map('n', 'n', [[v:searchforward ? 'n' : 'N']], { expr = true })
+map('n', 'N', [[v:searchforward ? 'N' : 'n']], { expr = true })
+-- Reverse current word search direction
+map('n', '#', '*')
+map('n', '*', '#')
