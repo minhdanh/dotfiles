@@ -12,16 +12,12 @@ map("v", "<leader>c", '"*y')
 -- Move to end of line in insert mode
 -- map("i", ",,", "<C-o>$")
 
--- Find current word quickly using fzf with ripgrep
--- map('n', 'ff', ':Rg <C-R><C-W><CR>')
--- -- Find current selected text in visual mode quickly using fzf with ripgrep
--- map('v', 'ff', 'y:Rg <C-R>"<CR>')
-
 -- Buffer navigation
 map("n", "<c-l>", ":bnext<CR>")
 map("n", "<c-h>", ":bprevious<CR>")
 map("n", "<leader>q", ":bp <BAR> bd #<CR>")
 map("n", "<c-y>", ":b#<CR>")
+map("n", "<c-tab>", ":b#<CR>")
 
 -- Toggle highlight search
 map("n", "<leader>m", ":set hlsearch!<cr>")
