@@ -22,6 +22,7 @@ return {
 					python = { "isort", "black" },
 					-- Use a sub-list to run only the first available formatter
 					javascript = { { "prettierd", "prettier" } },
+					typescript = { { "prettierd", "prettier" } },
 				},
 				format_on_save = function(bufnr)
 					-- Disable "format_on_save lsp_fallback" for languages that don't
