@@ -29,7 +29,7 @@ vim.o.conceallevel = 0
 -- Preview substitutions live, as you type!
 vim.o.inccommand = "split"
 -- Sync clipboard between OS and Neovim.
-vim.o.clipboard = "unnamedplus"
+-- vim.o.clipboard = "unnamedplus"
 vim.o.linebreak = true -- Wrap lines at convenient points
 vim.o.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 -- Configure how new splits should be opened

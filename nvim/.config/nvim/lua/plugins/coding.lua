@@ -1,5 +1,4 @@
 return {
-
 	-- auto completion
 	{
 		"hrsh7th/nvim-cmp",
@@ -108,84 +107,22 @@ return {
 			})
 		end,
 	},
-
-	-- snippets
-	{
-		"nvim-cmp",
-		dependencies = {
-			{
-				"garymjr/nvim-snippets",
-				opts = {
-					friendly_snippets = true,
-				},
-				dependencies = { "rafamadriz/friendly-snippets" },
-			},
-		},
-		opts = function(_, opts)
-			-- opts.snippet = {
-			--   expand = function(item)
-			--     return LazyVim.cmp.expand(item.body)
-			--   end,
-			-- }
-			-- if LazyVim.has("nvim-snippets") then
-			--   table.insert(opts.sources, { name = "snippets" })
-			-- end
-		end,
-		keys = {
-			{
-				"<Tab>",
-				function()
-					return vim.snippet.active({ direction = 1 }) and "<cmd>lua vim.snippet.jump(1)<cr>" or "<Tab>"
-				end,
-				expr = true,
-				silent = true,
-				mode = { "i", "s" },
-			},
-			{
-				"<S-Tab>",
-				function()
-					return vim.snippet.active({ direction = -1 }) and "<cmd>lua vim.snippet.jump(-1)<cr>" or "<S-Tab>"
-				end,
-				expr = true,
-				silent = true,
-				mode = { "i", "s" },
-			},
-		},
-	},
-
 	-- auto pairs
 	{
 		"echasnovski/mini.pairs",
 		event = "VeryLazy",
-		opts = {
-			modes = { insert = true, command = true, terminal = false },
-			-- skip autopair when next character is one of these
-			skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
-			-- skip autopair when the cursor is inside these treesitter nodes
-			skip_ts = { "string" },
-			-- skip autopair when next character is closing pair
-			-- and there are more closing pairs than opening pairs
-			skip_unbalanced = true,
-			-- better deal with markdown code blocks
-			markdown = true,
-		},
 		keys = {
 			{
 				"<leader>up",
 				function()
 					vim.g.minipairs_disable = not vim.g.minipairs_disable
-					-- if vim.g.minipairs_disable then
-					--   LazyVim.warn("Disabled auto pairs", { title = "Option" })
-					-- else
-					--   LazyVim.info("Enabled auto pairs", { title = "Option" })
-					-- end
 				end,
 				desc = "Toggle Auto Pairs",
 			},
 		},
-		-- config = function(_, opts)
-		--   LazyVim.mini.pairs(opts)
-		-- end,
+		config = function()
+			require("mini.pairs").setup()
+		end,
 	},
 
 	-- comments
@@ -199,37 +136,8 @@ return {
 	{
 		"echasnovski/mini.ai",
 		event = "VeryLazy",
-		opts = function()
-			-- LazyVim.on_load("which-key.nvim", function()
-			--   vim.schedule(LazyVim.mini.ai_whichkey)
-			-- end)
-			local ai = require("mini.ai")
-			return {
-				n_lines = 500,
-				custom_textobjects = {
-					o = ai.gen_spec.treesitter({ -- code block
-						a = { "@block.outer", "@conditional.outer", "@loop.outer" },
-						i = { "@block.inner", "@conditional.inner", "@loop.inner" },
-					}),
-					f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }), -- function
-					c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }), -- class
-					t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" }, -- tags
-					d = { "%f[%d]%d+" }, -- digits
-					e = { -- Word with case
-						{
-							"%u[%l%d]+%f[^%l%d]",
-							"%f[%S][%l%d]+%f[^%l%d]",
-							"%f[%P][%l%d]+%f[^%l%d]",
-							"^[%l%d]+%f[^%l%d]",
-						},
-						"^().*()$",
-					},
-					-- i = LazyVim.mini.ai_indent, -- indent
-					-- g = LazyVim.mini.ai_buffer, -- buffer
-					u = ai.gen_spec.function_call(), -- u for "Usage"
-					U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
-				},
-			}
+		config = function()
+			require("mini.ai").setup()
 		end,
 	},
 }
