@@ -37,7 +37,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 export GOPATH=$HOME/go
-export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/openssl@1.1/bin:$GOPATH/bin:$HOME/.local/bin"
+export PATH="$PATH:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$GOPATH/bin:$HOME/.local/bin"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -45,7 +45,7 @@ source $ZSH/oh-my-zsh.sh
 # export LESS=" -R "
 
 export FZF_DEFAULT_COMMAND='rg --files --ignore-vcs'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $(which fzf) ] && source <(fzf --zsh)
 
 case "$OSTYPE" in
   darwin*)

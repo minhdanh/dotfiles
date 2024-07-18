@@ -39,6 +39,8 @@ compdef kubecolor=kubectl
 alias less='bat --style=plain --theme=Coldark-Dark'
 # alias less='bat --style=plain'
 
+alias joke='curl -s https://icanhazdadjoke.com'
+
 ## functions
 
 # git clone a repo and cd to the directory of that repo
@@ -50,8 +52,6 @@ function gclone() {
 function define() {
   curl -s dict://dict.org/d:$1:wn | sed '/^[0-9]\{3\} /d'
 }
-
-alias joke='curl https://icanhazdadjoke.com'
 
 function def() {
   CONTENT="Hãy trả lời câu hỏi sau đây một cách đầy đủ: $@ có nghĩa là gì?"
@@ -104,18 +104,24 @@ function hmm_google() {
   done
 }
 
-function ggl () {
-        if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]
-        then
-                git pull --rebase origin "${*}"
-        else
-                [[ "$#" == 0 ]] && local b="$(git_current_branch)"
-                git pull --rebase origin "${b:=$1}"
-        fi
+function ggl() {
+  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]
+  then
+    git pull --rebase origin "${*}"
+  else
+    [[ "$#" == 0 ]] && local b="$(git_current_branch)"
+    git pull --rebase origin "${b:=$1}"
+  fi
 }
 
 function nslu() {
   domain_name=$(echo "$1" | sed 's/https\?:\/\///' | awk -F/ '{print $1}')
   echo $domain_name
   nslookup $domain_name
+}
+
+function ec2find() {
+  name=$1
+  profile=$2
+  aws ec2 describe-instances --profile $profile --region ap-southeast-1  --query 'Reservations[*].Instances[].[Tags[?Key==`Name`].Value[],PrivateIpAddress][][]' --filter 'Name=tag:Name,Values="*'$name'*"' | jq '.[]' | tr -d '"'
 }
