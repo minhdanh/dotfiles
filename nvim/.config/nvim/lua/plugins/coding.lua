@@ -8,6 +8,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
 			{
 				"Exafunction/codeium.nvim",
 				cmd = "Codeium",
@@ -102,8 +103,27 @@ return {
 					{ name = "codeium", group_index = 1, priority = 100 },
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
+					{ name = "buffer" },
 					{ name = "path" },
 				},
+			})
+			-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+			cmp.setup.cmdline({ "/", "?" }, {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = {
+					{ name = "buffer" },
+				},
+			})
+
+			-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+			cmp.setup.cmdline(":", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = "path" },
+				}, {
+					{ name = "cmdline" },
+				}),
+				matching = { disallow_symbol_nonprefix_matching = false },
 			})
 		end,
 	},
