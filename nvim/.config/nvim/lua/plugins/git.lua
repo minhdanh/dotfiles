@@ -3,7 +3,7 @@ return {
 		"lewis6991/gitsigns.nvim",
 		event = "VeryLazy",
 		keys = {
-			{ "<Leader>g", ":Gitsigns blame_line<CR>", desc = "Git blame for a line", mode = "n" },
+			{ "<Leader>gb", ":Gitsigns blame_line<CR>", desc = "Git blame for a line", mode = "n" },
 		},
 		config = function()
 			-- vim.cmd([[highlight clear SignColumn]])
@@ -57,5 +57,23 @@ return {
 				},
 			})
 		end,
+	},
+	{
+		"almo7aya/openingh.nvim",
+		keys = {
+			{ "<Leader>gr", ":OpenInGHRepo<CR>", desc = "Open Github project in browser", mode = "n" },
+			{
+				"<Leader>gf",
+				":OpenInGHFile<CR>",
+				desc = "Open the current file of a Github repo in browser",
+				mode = "n",
+			},
+			{
+				"<Leader>gf",
+				":OpenInGHFileLines<CR>",
+				desc = "Open the current file of Github repo at a specific line ranges in browser",
+				mode = "n",
+			},
+		},
 	},
 }
