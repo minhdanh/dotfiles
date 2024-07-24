@@ -38,5 +38,7 @@ return {
 				lsp_doc_border = false, -- add a border to hover docs and signature help
 			},
 		})
+
+		vim.api.nvim_set_hl(0, "NoiceVirtualText", { fg = "#5d818e" })
 	end,
 }
