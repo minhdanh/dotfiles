@@ -52,7 +52,7 @@ return {
 						luasnip.lsp_expand(args.body)
 					end,
 				},
-				completion = { completeopt = "menu,menuone,noinsert" },
+				completion = { completeopt = "menu,menuone,noinsert,preview" },
 
 				-- For an understanding of why these mappings were
 				-- chosen, you will need to read `:help ins-completion`
@@ -105,6 +105,22 @@ return {
 					{ name = "luasnip" },
 					{ name = "buffer" },
 					{ name = "path" },
+				},
+				formatting = {
+					fields = { "kind", "abbr", "menu" },
+					format = function(entry, vim_item)
+						vim_item.menu = ({
+							nvim_lsp = "[LSP]",
+							luasnip = "[Snippet]",
+							buffer = "[Buffer]",
+							path = "[Path]",
+							codeium = "[AI]",
+						})[entry.source.name]
+						return vim_item
+					end,
+				},
+				experimental = {
+					ghost_text = { hlgroup = "Comment" },
 				},
 			})
 			-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
