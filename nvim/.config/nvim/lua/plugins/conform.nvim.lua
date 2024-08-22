@@ -24,6 +24,13 @@ return {
 					-- Use a sub-list to run only the first available formatter
 					javascript = { "prettierd", "prettier", stop_after_first = true },
 					typescript = { "prettierd", "prettier", stop_after_first = true },
+					javascriptreact = { "prettier" },
+					typescriptreact = { "prettier" },
+					css = { "prettier" },
+					html = { "prettier" },
+					json = { "prettier" },
+					yaml = { "prettier" },
+					markdown = { "prettier" },
 				},
 				format_on_save = function(bufnr)
 					-- Disable "format_on_save lsp_fallback" for languages that don't
