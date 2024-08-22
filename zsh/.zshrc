@@ -24,7 +24,7 @@ plugins=(
   gitignore
   kubectl
   magic-enter
-  ripgrep
+  fzf
   urltools
   z
   zsh-syntax-highlighting
@@ -45,7 +45,6 @@ source $ZSH/oh-my-zsh.sh
 # export LESS=" -R "
 
 export FZF_DEFAULT_COMMAND='rg --files --ignore-vcs'
-[ -f $(which fzf) ] && source <(fzf --zsh)
 
 case "$OSTYPE" in
   darwin*)
@@ -58,8 +57,3 @@ esac
 [ -f ~/.zshrc_common ] && source ~/.zshrc_common
 [ -f ~/.zshrc_local ] && source ~/.zshrc_local
 
-# Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
