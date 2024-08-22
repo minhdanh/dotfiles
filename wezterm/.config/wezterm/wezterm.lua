@@ -11,19 +11,34 @@ local config = wezterm.config_builder()
 -- end)
 
 config.color_scheme = "Sonokai (Gogh)"
-config.font_size = 13
-config.font = wezterm.font_with_fallback({
-	-- {
-	-- 	family = "Monaco Nerd Font Mono",
-	-- 	weight = "Medium",
-	-- 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-	-- },
-	{ family = "JetBrainsMono Nerd Font" },
-})
+config.line_height = 1.25
+config.font_size = 12
+config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
+config.harfbuzz_features = { 'calt=0' }
+config.font = wezterm.font {
+  family = "Hack",
+  weight = "Regular",
+}
 
-config.use_fancy_tab_bar = false
-config.show_tabs_in_tab_bar = false
-config.show_new_tab_button_in_tab_bar = false
+config.enable_tab_bar = false
+config.default_prog = { "/opt/homebrew/bin/tmux" }
 
+config.keys = {
+  {
+    key = ',',
+    mods = 'CMD',
+    action = wezterm.action.SpawnCommandInNewTab {
+      cwd = os.getenv('WEZTERM_CONFIG_DIR'),
+      set_environment_variables = {
+        TERM = 'screen-256color',
+      },
+      args = {
+        '/opt/homebrew/bin/nvim',
+        os.getenv('WEZTERM_CONFIG_FILE'),
+      },
+    },
+  },
+  -- other keys
+}
 -- Returns our config to be evaluated. We must always do this at the bottom of this file
 return config
