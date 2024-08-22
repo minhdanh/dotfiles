@@ -10,18 +10,22 @@ local config = wezterm.config_builder()
 -- 	window:set_right_status("right")
 -- end)
 
+config.set_environment_variables = {
+  PATH = '/opt/homebrew/bin:' .. os.getenv('PATH')
+}
 config.color_scheme = "Sonokai (Gogh)"
 config.line_height = 1.25
 config.font_size = 12
 config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
 config.harfbuzz_features = { 'calt=0' }
+-- config.freetype_load_flags = 'NO_HINTING'
 config.font = wezterm.font {
-  family = "Hack",
-  weight = "Regular",
+  family = "Fira Code",
+  weight = "Medium",
 }
 
 config.enable_tab_bar = false
-config.default_prog = { "/opt/homebrew/bin/tmux" }
+config.default_prog = { "tmux" }
 
 config.keys = {
   {
@@ -33,7 +37,7 @@ config.keys = {
         TERM = 'screen-256color',
       },
       args = {
-        '/opt/homebrew/bin/nvim',
+        'nvim',
         os.getenv('WEZTERM_CONFIG_FILE'),
       },
     },
