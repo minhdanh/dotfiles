@@ -11,38 +11,43 @@ local config = wezterm.config_builder()
 -- end)
 
 config.set_environment_variables = {
-  PATH = '/opt/homebrew/bin:' .. os.getenv('PATH')
+	PATH = "/opt/homebrew/bin:" .. os.getenv("PATH"),
+}
+config.use_ime = false
+config.window_padding = {
+	bottom = 0,
 }
 config.color_scheme = "Sonokai (Gogh)"
 config.line_height = 1.25
+config.default_cursor_style = "BlinkingBlock"
 config.font_size = 12
 config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
-config.harfbuzz_features = { 'calt=0' }
+config.harfbuzz_features = { "calt=0" }
 -- config.freetype_load_flags = 'NO_HINTING'
-config.font = wezterm.font {
-  family = "Fira Code",
-  weight = "Medium",
-}
+config.font = wezterm.font({
+	family = "Fira Code",
+	weight = "Medium",
+})
 
 config.enable_tab_bar = false
 config.default_prog = { "tmux" }
 
 config.keys = {
-  {
-    key = ',',
-    mods = 'CMD',
-    action = wezterm.action.SpawnCommandInNewTab {
-      cwd = os.getenv('WEZTERM_CONFIG_DIR'),
-      set_environment_variables = {
-        TERM = 'screen-256color',
-      },
-      args = {
-        'nvim',
-        os.getenv('WEZTERM_CONFIG_FILE'),
-      },
-    },
-  },
-  -- other keys
+	{
+		key = ",",
+		mods = "CMD",
+		action = wezterm.action.SpawnCommandInNewTab({
+			cwd = os.getenv("WEZTERM_CONFIG_DIR"),
+			set_environment_variables = {
+				TERM = "screen-256color",
+			},
+			args = {
+				"nvim",
+				os.getenv("WEZTERM_CONFIG_FILE"),
+			},
+		}),
+	},
+	-- other keys
 }
 -- Returns our config to be evaluated. We must always do this at the bottom of this file
 return config
