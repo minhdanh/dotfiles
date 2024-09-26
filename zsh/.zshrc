@@ -21,6 +21,7 @@ plugins=(
   dotenv
   encode64
   git
+  git-open
   gitignore
   kubectl
   magic-enter
