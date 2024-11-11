@@ -154,6 +154,17 @@ return {
 						},
 					},
 				},
+
+				yaml_language_server = {},
+				helm_ls = {
+					settings = {
+						["helm-ls"] = {
+							yamlls = {
+								path = "yaml-language-server",
+							},
+						},
+					},
+				},
 			}
 
 			-- Ensure the servers and tools above are installed
