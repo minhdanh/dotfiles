@@ -25,7 +25,7 @@
 - stow
 - difftastic
 
-## Links config files
+## Link config files
 
 ```
 stow -vt ~ zsh
