@@ -155,7 +155,6 @@ return {
 					},
 				},
 
-				yaml_language_server = {},
 				helm_ls = {
 					settings = {
 						["helm-ls"] = {
