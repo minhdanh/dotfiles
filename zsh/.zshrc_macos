@@ -9,7 +9,7 @@ alias clb="pbcopy"
 
 export EDITOR=nvim
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="/opt/homebrew/opt/ruby/bin:$HOME/fvm/default/bin:$PATH:/opt/homebrew/opt/coreutils/libexec/gnubin"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export JAVA_HOME="/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
