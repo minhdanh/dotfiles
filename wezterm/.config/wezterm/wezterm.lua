@@ -30,7 +30,14 @@ config.font = wezterm.font({
 })
 
 config.enable_tab_bar = false
-config.default_prog = { "tmux" }
+-- config.tab_bar_at_bottom = true
+-- config.use_fancy_tab_bar = false
+-- config.show_tabs_in_tab_bar = false
+-- config.show_new_tab_button_in_tab_bar = false
+-- config.status_update_interval = 3000
+
+-- Run tmux on startup, fall back to login shell when tmux exits
+config.default_prog = { "/bin/zsh", "-l", "-c", "tmux attach || tmux; exec zsh -l" }
 
 config.keys = {
 	{
@@ -47,7 +54,25 @@ config.keys = {
 			},
 		}),
 	},
+	-- Disable Cmd+W to prevent accidental quit
+	{
+		key = "w",
+		mods = "CMD",
+		action = wezterm.action.DisableDefaultAssignment,
+	},
 	-- other keys
 }
+
+-- wezterm.on("update-right-status", function(window, pane)
+-- 	local date = wezterm.strftime("%Y-%m-%d %H:%M:%S")
+--
+-- 	-- Make it italic and underlined
+-- 	window:set_right_status(wezterm.format({
+-- 		{ Attribute = { Underline = "Single" } },
+-- 		{ Attribute = { Italic = true } },
+-- 		{ Text = "Hello " .. date },
+-- 	}))
+-- end)
+
 -- Returns our config to be evaluated. We must always do this at the bottom of this file
 return config
